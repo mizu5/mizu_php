@@ -178,8 +178,136 @@ echo $_GET['id'];
 	</code></pre>
 	</div>
 	</div>		
+
+	<h2>비교 연산자(===)</h2>
+	<ul>
+	<li>좌항과 우항이 정확하게 같다. 데이터 타입까지</li>
+	<li>var가 array이면 true, 아니면 false를 반환</li>
+	</ul>
+	<div class="ex">
+	<div class="code">
+	<pre><code class="php">
+echo "1 == '1' : ";
+var_dump(1 == '1');
+echo "<br />1 === '1' : ";
+var_dump(1 === '1');
+	</code></pre>
+	</div>
+	<div class="result">
+	<pre><code class="php">
+<?php 
+echo "1 == '1' : ";
+var_dump(1 == '1');
+echo "<br />1 === '1' : ";
+var_dump(1 === '1');
+?>	
+	</code></pre>
+	</div>
+	</div>	
 	
-		
+	<h2>$_GET</h2>
+	<ul>
+	<li>GET방식으로 데이터를 받음</li>
+	</ul>
+	<div class="ex">
+	<div class="code">
+	<pre><code class="php">
+echo $_GET['id'];
+	</code></pre>
+	</div>
+	<div class="result">
+	<pre><code class="php">
+<?php 
+echo $_GET['id'];
+?>	
+	</code></pre>
+	</div>
+	</div>			
+
+	<h2>while</h2>
+	<ul>
+	<li>조건이 참(true)이면 중괄호 구간의 구문을 반복적으로 실행한다.</li>
+	<li>조건이 거짓(false)이면 반복끝</li>
+	</ul>
+	<div class="ex">
+	<div class="code">
+	<pre><code class="php">
+while($sum < 5){
+	echo $sum;
+	$sum++;
+}
+	</code></pre>
+	</div>
+	<div class="result">
+	<pre><code class="php">
+<?php 
+$sum=0;
+while($sum < 5){
+	echo $sum;
+	$sum++;
+	echo "<br>";
+}
+?>	
+	</code></pre>
+	</div>
+	</div>	
+
+
+
+	<h2>for</h2>
+	<ul>
+	<li>반복문</li>
+	</ul>
+	<div class="ex">
+	<div class="code">
+	<pre><code class="php">
+for($i=0; $i<10; $i++){
+	for($j=0; $j<10; $j++){
+		echo "반복: {$i}{$j}<br/>";
+	}
+}
+	</code></pre>
+	</div>
+	<div class="result">
+	<pre><code class="php">
+<?php 
+for($i=0; $i<3; $i++){
+	for($j=0; $j<3; $j++){
+		echo "반복: {$i}{$j}<br/>";
+	}
+}
+?>	
+	</code></pre>
+	</div>
+	</div>	
+
+	<h2>배열</h2>
+	<ul>
+	<li>$member = </li>
+	</ul>
+	<div class="ex">
+	<div class="code">
+	<pre><code class="php">
+for($i=0; $i<10; $i++){
+	for($j=0; $j<10; $j++){
+		echo "반복: {$i}{$j}<br/>";
+	}
+}
+	</code></pre>
+	</div>
+	<div class="result">
+	<pre><code class="php">
+<?php 
+for($i=0; $i<3; $i++){
+	for($j=0; $j<3; $j++){
+		echo "반복: {$i}{$j}<br/>";
+	}
+}
+?>	
+	</code></pre>
+	</div>
+	</div>	
+			
 <script>
 $(document).ready(function() {
 	hljs.configure({useBR: false,

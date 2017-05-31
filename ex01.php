@@ -203,25 +203,6 @@ var_dump(1 === '1');
 ?>	
 	</code></pre>
 	</div>
-	</div>	
-	
-	<h2>$_GET</h2>
-	<ul>
-	<li>GET방식으로 데이터를 받음</li>
-	</ul>
-	<div class="ex">
-	<div class="code">
-	<pre><code class="php">
-echo $_GET['id'];
-	</code></pre>
-	</div>
-	<div class="result">
-	<pre><code class="php">
-<?php 
-echo $_GET['id'];
-?>	
-	</code></pre>
-	</div>
 	</div>			
 
 	<h2>while</h2>
@@ -308,6 +289,207 @@ for($i=0; $i<3; $i++){
 	</div>
 	</div>	
 			
+
+	<h2>foreach문</h2>
+		<ul>
+		<li>배열에만 동작하는 반복문</li>
+		</ul>
+		<div class="ex">
+		<div class="code">
+		<pre><code class="php">
+	$robot = array('Maginger Z','Taekwon V','Gundam');
+	foreach($robot as $value){
+		echo "로봇:".$value;
+	}
+		</code></pre>
+		</div>
+		<div class="result">
+		<pre><code class="php">
+	<?php 
+	$robot = array('Maginger Z','Taekwon V','Gundam');
+	foreach($robot as $value){
+		echo "로봇:".$value."<br>";
+	}
+	?>	
+		</code></pre>
+		</div>
+	</div>					
+
+	<h2>list()</h2>
+		<ul>
+		<li>배열처럼 변수에 할당</li>
+		</ul>
+		<div class="ex">
+		<div class="code">
+		<pre><code class="php">
+	$robot = array('Maginger Z','Taekwon V','Gundam');
+	list($robot1,$robot2,$robot3) = $robot;
+	echo "1번로봇:".$robot1."&lt;br&gt";
+	echo "2번로봇:".$robot2."&lt;br&gt";
+	echo "3번로봇:".$robot3."&lt;br&gt";	
+		</code></pre>
+		</div>
+		<div class="result">
+		<pre><code class="php">
+	<?php 
+	$robot = array('Maginger Z','Taekwon V','Gundam');
+	list($robot1,$robot2,$robot3) = $robot;
+	echo "1번로봇:".$robot1."<br>";
+	echo "2번로봇:".$robot2."<br>";
+	echo "3번로봇:".$robot3."<br>";	
+	?>	
+		</code></pre>
+		</div>
+	</div>				
+			
+	<h2>배열</h2>
+		<ul>
+		<li>배열을 선언하는 방식 2가지</li>
+		<li>방식1: $robot = ['Maginger Z','Teakwon V', 'Gundam'];(php 5.4이후 버전)</li>
+		<li>방식2: $robot = array('Marginger Z', 'TeaKwon V', 'Gundam'); (php 5.4이전 버전)</li>
+		<li>하위 버전 호완성을 위해 방식2로 사용</li>		
+		</ul>
+		<div class="ex">
+		<div class="code">
+		<pre><code class="php">
+	$robot = array('Maginger Z','Taekwon V','Gundam');
+	echo "1번로봇:".$robot[0]."&lt;br&gt";
+	echo "2번로봇:".$robot[1]."&lt;br&gt";
+	echo "3번로봇:".$robot[2]."&lt;br&gt";	
+		</code></pre>
+		</div>
+		<div class="result">
+		<pre><code class="php">
+	<?php 
+	$robot = array('Maginger Z','Taekwon V','Gundam');
+	echo "1번로봇:".$robot[0]."<br>";
+	echo "2번로봇:".$robot[1]."<br>";
+	echo "3번로봇:".$robot[2]."<br>";	
+	?>	
+		</code></pre>
+		</div>
+	</div>		
+	<h2>함수 리턴값으로 배열 가져오기</h2>
+		<ul>
+		<li>함수에서 배열을 만들고 그 배열을 가져오는 방법</li>
+		</ul>
+		<div class="ex">
+		<div class="code">
+		<pre><code class="php">
+	fucntion get_robot(){
+		return array('Maginger Z','Taekwon V','Gundam');
+	}
+	
+	var_dump(get_robot());	
+		</code></pre>
+		</div>
+		<div class="result">
+		<pre><code class="php">
+	<?php 
+	function get_robot(){
+		return array('Maginger Z','Taekwon V','Gundam');
+	}
+	
+	var_dump(get_robot());	
+	?>	
+		</code></pre>
+		</div>
+	</div>			
+		<ul>
+		<li>함수에서 배열을 만들고 그 배열을 변수에 넣어서 사용</li>
+		</ul>
+		<div class="ex">
+		<div class="code">
+		<pre><code class="php">
+	fucntion get_robot(){
+		return array('Maginger Z','Taekwon V','Gundam');
+	}
+	
+	$robot = get_robot();	
+		</code></pre>
+		</div>
+		<div class="result">
+		<pre><code class="php">
+	<?php 
+	function get_robots(){
+		return array('Maginger Z','Taekwon V','Gundam');
+	}
+	
+	$robot = get_robots();
+	echo $robot[1];
+	?>	
+		</code></pre>
+		</div>
+	</div>		
+		<ul>
+		<li>함수에서 배열을 만들고 함수호출로 바로 사용하는 방법</li>
+		</ul>
+		<div class="ex">
+		<div class="code">
+		<pre><code class="php">
+	function get_robot_array(){
+		return array('Maginger Z','Taekwon V','Gundam');
+	}
+	
+	echo get_robot_array()[0];	
+		</code></pre>
+		</div>
+		<div class="result">
+		<pre><code class="php">
+	<?php 
+	function get_robot_array(){
+		return array('Maginger Z','Taekwon V','Gundam');
+	}
+	
+	echo get_robot_array()[0];	
+	?>	
+		</code></pre>
+		</div>
+	</div>	
+		<ul>
+		<li>count:배열 크기</li>
+		</ul>
+		<div class="ex">
+		<div class="code">
+		<pre><code class="php">
+		$a = array(1,2,3,4,5);
+		echo "배열길이: ".count($a);
+		</code></pre>
+		</div>
+		<div class="result">
+		<pre><code class="php">
+	<?php 
+	$a = array(1,2,3,4,5);
+	echo "배열길이: ".count($a);
+	?>	
+		</code></pre>
+		</div>
+	</div>		
+		<ul>
+		<li>array_push 배열의 추가</li>
+		<li>배열의 끝에 아이템을 추가하는 방법</li>
+		</ul>
+		<div class="ex">
+		<div class="code">
+		<pre><code class="php">
+		$Rarray = array('a','b','c','d','e');
+		array_push($Rarray,'f');
+		var_dump($arr);
+		</code></pre>
+		</div>
+		<div class="result">
+		<pre><code class="php">
+	<?php 
+	$Rarray = array('a','b','c','d','e');
+	array_push($Rarray,'f');
+	var_dump($Rarray);
+	?>	
+		</code></pre>
+		</div>
+	</div>		
+	
+	
+						
 <script>
 $(document).ready(function() {
 	hljs.configure({useBR: false,

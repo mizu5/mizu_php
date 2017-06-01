@@ -1,0 +1,189 @@
+<html>
+<head><title>PHP정리</title>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link rel="stylesheet" href="./js/highlight.js-master/src/styles/androidstudio.css">
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="  crossorigin="anonymous"></script>
+<script src="js/highlight.js-master/src/highlight.js"></script>
+<scritp src="js/highlightjs-line-numbers.js"></scritp>
+<style>
+	*{font-family: 'Roboto', sans-serif;}
+	h2{border-bottom:2px solid #333; padding-bottom:0.5em; display:inline-block; margin-bottom:0em;}	
+	div.ex{background-color:#ddd;padding:0.3em; margin:0 2em;}
+	div.ex .code:before{content:"CODE"; display:inline-block;background-color:#F00;color:#fff;font-size:0.8em;padding:0.2em 0.5em 0.4em;border-radius:1em;}
+	div.ex .result:before{content:"RESULT"; display:inline-block;background-color:#56aee3;color:#fff;font-size:0.8em;padding:0.2em 0.5em 0.4em;border-radius:1em;}
+	div.ex .result{border-top:1px solid #fff;padding-top:1em;}	
+	div.ex p{padding-left:20px;}
+	div.ex > p > p{padding-left:30px;}
+</style>
+<body>
+<h1>문자열 </h1>
+	<h2>줄바꿈</h2>
+	<ul><li>\n \r</li></ul>	
+	<div class="ex">
+	<div class="code">
+	<pre><code class="php">
+	echo "hello world\n";
+	echo "hello world\n";
+	</code></pre>
+	</div>
+	<div class="result">
+	<pre><code class="php">	
+	<?php 
+	echo "hello world\n";
+	echo "hello world\n";	
+	?>
+	</code></pre>	
+	</div>
+	</div>	
+	
+	<h2>{,}</h2>
+	<ul><li>문자열안에 변수 사용 쌍따옴표 안에서 {,}(중괄호)를 사용)</li></ul>	
+	<div class="ex">
+	<div class="code">
+	<pre><code class="php">
+	$robot = array('MagingerZ','TeakwonV');
+	echo "Robot {$robot[1]} go~";
+	</code></pre>
+	</div>
+	<div class="result">
+	<pre><code class="php">	
+	<?php 
+	$robot = array('MagingerZ','TeakwonV');
+	echo "Robot {$robot[1]} go~";
+	?>
+	</code></pre>	
+	</div>
+	</div>	
+
+<h1>정규표현식</h1>	
+	<h2>php 정규표현식 종류</h2>
+	<ul>
+	<li>preg: Perl스타일의 정규표현식</li>
+	<li>ereg: UNIX스타일의 정규표현식(삭제될 예정)</li>
+	</ul>	
+	<div class="ex">
+	<div class="code">
+	<pre><code class="php">
+	if(preg_match("/php/i","PHP is the web scripting language of cohoice.")){
+		echo "A match was found";
+	}else{
+		echo "A match was not found";
+	}
+	//i는 대소문자를 가리지말라는 패턴
+	//m은 줄바꿈 문자에 따라서 텍스트의 행을 구분하도록 하는 패턴(예제에선 사용안했음)
+	</code></pre>
+	</div>
+	<div class="result">
+	<pre><code class="php">	
+	<?php 
+	if(preg_match("/php/i","PHP is the web scripting language of cohoice.")){
+		echo "A match was found";
+	}else{
+		echo "A match was not found";
+	}
+	?>
+	</code></pre>	
+	</div>
+	</div>	
+	
+	<h2>b(word boundray)</h2>
+	<ul>
+	<li>\b는 단어의 경계를 의미한다. 그렇기 때문에 \b로 깜싸진 web은 web이라는 독립된 단어를 의미한다.</li>
+	</ul>	
+	<div class="ex">
+	<div class="code">
+	<pre><code class="php">
+	if(preg_match("/\bweb\b/i","PHP is the web scripting language of cohoice.")){
+		echo "A match was found";
+	}else{
+		echo "A match was not found";
+	}
+	
+	if(preg_match("/\bweb\b/i","PHP is the website scripting language of cohoice.")){
+		echo "A match was found";
+	}else{
+		echo "A match was not found";
+	}
+	</code></pre>
+	</div>
+	<div class="result">
+	<pre><code class="php">	
+	<?php 
+	if(preg_match("/\bweb\b/i","PHP is the web scripting language of cohoice.")){
+		echo "A match was found";
+	}else{
+		echo "A match was not found";
+	}
+
+	if(preg_match("/\bweb\b/i","PHP is the website scripting language of cohoice.")){
+		echo "A match was found";
+	}else{
+		echo "A match was not found";
+	}
+	?>
+	</code></pre>	
+	</div>
+	</div>	
+	
+	<h2>preg_match('','',array)</h2>
+	<ul>
+	<li>array에 패턴에 해당한 값이 배열로된 변수를 받는다.</li>
+	</ul>	
+	<div class="ex">
+	<div class="code">
+	<pre><code class="php">
+	$subject = 'coding everybody http://mmm.naver.com mizu@gmail.com 010-8988-8989';
+	preg_match('/http:\/\/',$subject,$match);
+	print_r($match);
+	preg_match('~http://~',$subject,$match);
+	print_r($match);	
+	preg_match('~http://\w+~',$subject,$match);
+	print_r($match);	
+	
+	
+	
+	//~문자~ 구분자~ 사이의 문자를 문자그대로 받는다.
+	//\w 문자
+	//+ 하나이상
+	//\s 공백
+	//\. 문자로함 그냥 .은 한문자를 나타냄
+	//() 캡쳐링하여 배열로 데이터를 만든다.
+	</code></pre>
+	</div>
+	<div class="result">
+	<pre><code class="php">	
+	<?php 
+	$subject = 'coding everybody http://naver.com mizu@gmail.com 010-8988-8989';
+	preg_match('/http:\/\//',$subject,$match);
+	print_r($match);
+	preg_match('~http://~',$subject,$match);
+	print_r($match);	
+	preg_match('~http://\w+~',$subject,$match);
+	print_r($match);	
+	preg_match('~http://\w+\.~',$subject,$match);
+	print_r($match);
+	preg_match('~http://\w+\.\w+~',$subject,$match);
+	print_r($match);
+	preg_match('~(http://\w+\.\w+)\s(\w+@\w+\.\w+)~',$subject,$match);
+	print_r($match);
+	?>
+	</code></pre>	
+	</div>
+	</div>										
+<script>
+$(document).ready(function() {
+	hljs.configure({useBR: false,
+		  tabReplace: '    ', // 4 spaces
+		  classPrefix: ''     // don't append class prefix
+
+		});
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+  
+});
+
+</script>
+</body>
+</html>

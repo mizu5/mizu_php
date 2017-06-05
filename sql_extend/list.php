@@ -2,8 +2,6 @@
 	error_reporting(E_ALL ^ E_DEPRECATED);
 	mysql_connect("localhost","root","a14721472");
 	mysql_select_db("mizudb");
-	
-
 		$list_result = mysql_query("select * from topic");
 		$row = mysql_fetch_array($list_result);
 		//print_r($row);

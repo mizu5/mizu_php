@@ -1,0 +1,211 @@
+<html>
+<head><title>PHP정리</title>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link rel="stylesheet" href="./js/highlight.js-master/src/styles/androidstudio.css">
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="  crossorigin="anonymous"></script>
+<script src="js/highlight.js-master/src/highlight.js"></script>
+<script src="js/highlightjs-line-numbers.js"></script>
+<style>
+	*{font-family: 'Roboto', sans-serif;}
+	h2{border-bottom:2px solid #333; padding-bottom:0.5em; display:inline-block; margin-bottom:0em;}	
+	div.ex{background-color:#ddd;padding:0.3em; margin:0 2em;}
+	div.ex .code:before{content:"CODE"; display:inline-block;background-color:#F00;color:#fff;font-size:0.8em;padding:0.2em 0.5em 0.4em;border-radius:1em;}
+	div.ex .result:before{content:"RESULT"; display:inline-block;background-color:#56aee3;color:#fff;font-size:0.8em;padding:0.2em 0.5em 0.4em;border-radius:1em;}
+	div.ex .result{border-top:1px solid #fff;padding-top:1em;}	
+	div.ex p{padding-left:20px;}
+	div.ex > p > p{padding-left:30px;}
+</style>
+<body>
+<h1>쿠키</h1>
+	<h2>setCookie</h2>
+	<ul><li>setCookie(name,value,exfire,path,domain,httponly=false)</li>
+	<li>클라이언트의 브라우저에 저장해서 DATA유출염려가 있다.</li>
+	</ul>	
+	<div class="ex">
+	<div class="code">
+	<pre><code class="php">
+	setCookie('cookie1','미쯔');
+	setCookie('cookie2',time()+time()+60);
+	
+	</code></pre>
+	</div>
+	<div class="result">
+	<pre><code class="php">	
+	<?php 
+	setCookie('cookie1','미쯔');
+	setCookie('cookie2',time()+time()+60);
+	?>
+	</code></pre>	
+	</div>
+	</div>	
+
+	<h2>$_COOKIE</h2>
+	<ul><li>$_COOKIE[name]</li>
+	<li>쿠키값 가져오기</li>
+	</ul>	
+	<div class="ex">
+	<div class="code">
+	<pre><code class="php">
+	echo $_COOKIE['cookie1']."<br/>";
+	echo time()-$_COOKIE['cookie2'];
+	
+	</code></pre>
+	</div>
+	<div class="result">
+	<pre><code class="php">	
+	<?php 
+	echo $_COOKIE['cookie1']."<br/>";
+	echo time()-$_COOKIE['cookie2'];
+	?>
+	</code></pre>	
+	</div>
+	</div>	 
+
+	<h2>$_COOKIE</h2>
+	<ul><li>$_COOKIE[name]</li>
+	<li>쿠키값 가져오기</li>
+	</ul>	
+	<div class="ex">
+	<div class="code">
+	<pre><code class="php">
+	echo $_COOKIE['cookie1']."<br/>";
+	echo time()-$_COOKIE['cookie2'];
+	
+	</code></pre>
+	</div>
+	<div class="result">
+	<pre><code class="php">	
+	<?php 
+	echo $_COOKIE['cookie1']."<br/>";
+	echo time()-$_COOKIE['cookie2'];
+	?>
+	</code></pre>	
+	</div>
+	</div>
+	
+	<h2>session_save_path()</h2>
+	<ul><li>session_save_path(경로)</li>
+	<li>세션을 사용할경우 파일로 저장되는데 그파일을 위치할 디렉토리를 지정할 수 있다.</li>
+	<li>식별자(SID:session ID)만 클라이언트의 브라우저에 저장하고 값은 서버에 저장해서 DATA유출염려가 덜하다.</li>
+	<li></li>
+	</ul>	
+	<div class="ex">
+	<div class="code">
+	<pre><code class="php">
+	session_save_path('./session');	//세션을 사용할경우 파일로 저장되는데 그파일을 위치할 디렉토리를 지정할 수 있다.
+	session_start();				//로직 초입에 사용. header 데이터 타입으로 전달.
+	$_SSESSION['title'] = '미쯔';	
+	
+	</code></pre>
+	</div>
+	<div class="result">
+	<pre><code class="php">	
+	<?php 
+
+	?>
+	</code></pre>	
+	</div>
+	</div>	
+	
+	<h2>session_start()</h2>
+	<ul>
+	<li>세션을 사용할경우 꼭  로직 초입에 사용, header 데이터 타입으로 전달.</li>
+	</ul>	
+	<div class="ex">
+	<div class="code">
+	<pre><code class="php">
+	session_save_path('./session');	//세션을 사용할경우 파일로 저장되는데 그파일을 위치할 디렉토리를 지정할 수 있다.
+	session_start();				//로직 초입에 사용. header 데이터 타입으로 전달.
+	$_SSESSION['title'] = '미쯔';		
+	</code></pre>
+	</div>
+	<div class="result">
+	<pre><code class="php">	
+	<?php 
+
+	?>
+	</code></pre>	
+	</div>
+	</div>		
+	
+	<h2>$_SESSION(name)</h2>
+	<ul>
+	<li>세션값을 불러옴</li>
+	</ul>	
+	<div class="ex">
+	<div class="code">
+	<pre><code class="php">
+	session_save_path('./session');	//세션을 사용할경우 파일로 저장되는데 그파일을 위치할 디렉토리를 지정할 수 있다.
+	session_start();				//로직 초입에 사용. header 데이터 타입으로 전달.
+	$_SSESSION['title'] = '미쯔';		
+	</code></pre>
+	</div>
+	<div class="result">
+	<pre><code class="php">	
+	<?php 
+
+	?>
+	</code></pre>	
+	</div>
+	</div>	
+	
+	<h2>$_SESSION(name)</h2>
+	<ul>
+	<li>세션값을 불러옴</li>
+	</ul>	
+	<div class="ex">
+	<div class="code">
+	<pre><code class="php">
+	session_save_path('./session');	//세션을 사용할경우 파일로 저장되는데 그파일을 위치할 디렉토리를 지정할 수 있다.
+	session_start();				//로직 초입에 사용. header 데이터 타입으로 전달.
+	$_SSESSION['title'] = '미쯔';		
+	</code></pre>
+	</div>
+	<div class="result">
+	<pre><code class="php">	
+	<?php 
+
+	?>
+	</code></pre>	
+	</div>
+	</div>		
+	
+	<h2>session_destroy();</h2>
+	<ul>
+	<li>세션삭제</li>
+	<li>세션파일도 삭제<li>
+	</ul>	
+	<div class="ex">
+	<div class="code">
+	<pre><code class="php">
+	session_save_path('./session/');
+	session_start();
+	session_destroy();
+	header('Location: ./login.php');		
+	</code></pre>
+	</div>
+	<div class="result">
+	<pre><code class="php">	
+	<?php 
+
+	?>
+	</code></pre>	
+	</div>
+	</div>																		
+<script>
+$(document).ready(function() {
+	hljs.configure({useBR: false,
+		  tabReplace: '    ', // 4 spaces
+		  classPrefix: ''     // don't append class prefix
+
+		});
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+  
+});
+
+</script>
+</body>
+</html>

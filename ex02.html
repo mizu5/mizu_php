@@ -133,13 +133,19 @@
 	<div class="ex">
 	<div class="code">
 	<pre><code class="php">
-	$subject = 'coding everybody http://mmm.naver.com mizu@gmail.com 010-8988-8989';
-	preg_match('/http:\/\/',$subject,$match);
+	$subject = 'coding everybody http://naver.com mizu@gmail.com 010-8988-8989';
+	preg_match('/http:\/\//',$subject,$match);
 	print_r($match);
 	preg_match('~http://~',$subject,$match);
 	print_r($match);	
 	preg_match('~http://\w+~',$subject,$match);
 	print_r($match);	
+	preg_match('~http://\w+\.~',$subject,$match);
+	print_r($match);
+	preg_match('~http://\w+\.\w+~',$subject,$match);
+	print_r($match);
+	preg_match('~(http://\w+\.\w+)\s(\w+@\w+\.\w+)~',$subject,$match);
+	var_dump($match);
 	
 	
 	
